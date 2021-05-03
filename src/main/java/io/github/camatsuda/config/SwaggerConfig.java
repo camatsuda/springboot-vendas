@@ -12,7 +12,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -25,11 +24,9 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("io.github.camatsuda.rest.controller"))
+                        .basePackage("io.github.dougllasfps.rest.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .securityContexts(Arrays.asList(securityContext()))
-                .securitySchemes(Arrays.asList(apiKey()))
                 .apiInfo(apiInfo());
     }
 
@@ -43,11 +40,10 @@ public class SwaggerConfig {
     }
 
     private Contact contact(){
-        return new Contact("Carol Matsuda",
-                "http://github.com/camatsuda",
+        return new Contact("Carolina Matsuda"
+                , "http://github.com/camatsuda",
                 "carolinam.matsuda@gmail.com");
     }
-
     public ApiKey apiKey(){
         return new ApiKey("JWT", "Authorization", "header");
     }

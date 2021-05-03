@@ -38,28 +38,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(usuarioService)
-            .passwordEncoder(passwordEncoder());
+                .userDetailsService(usuarioService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/api/clientes/**")
-                    .hasAnyRole("USER", "ADMIN")
+                .hasAnyRole("USER", "ADMIN")
                 .antMatchers("/api/pedidos/**")
-                    .hasAnyRole("USER", "ADMIN")
+                .hasAnyRole("USER", "ADMIN")
                 .antMatchers("/api/produtos/**")
-                    .hasRole("ADMIN")
+                .hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/usuarios/**")
-                    .permitAll()
+                .permitAll()
                 .anyRequest().authenticated()
-            .and()
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
+                .and()
                 .addFilterBefore( jwtFilter(), UsernamePasswordAuthenticationFilter.class);
         ;
     }

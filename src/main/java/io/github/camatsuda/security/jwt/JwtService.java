@@ -36,12 +36,12 @@ public class JwtService {
                 .compact();
     }
 
-    private Claims obterClaims( String token ) throws ExpiredJwtException {
+    private Claims obterClaims(String token ) throws ExpiredJwtException {
         return Jwts
-                 .parser()
-                 .setSigningKey(chaveAssinatura)
-                 .parseClaimsJws(token)
-                 .getBody();
+                .parser()
+                .setSigningKey(chaveAssinatura)
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public boolean tokenValido( String token ){

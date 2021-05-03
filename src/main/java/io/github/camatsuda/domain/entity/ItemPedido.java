@@ -1,5 +1,6 @@
 package io.github.camatsuda.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,8 @@ public class ItemPedido {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
+
+    @JoinColumn(name = "pedido_id")@JsonIgnore
     private Pedido pedido;
 
     @ManyToOne
